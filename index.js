@@ -3,15 +3,24 @@ import { typeDefs } from "./schema.js";
 import { Query } from "./resolvers/Query.js"
 import { Product } from "./resolvers/Product.js"
 import { Category } from "./resolvers/Category.js"
+import { categories, products, reviews } from "./data.js";
 
-// Third methord is the way to get product by Id
-// Remember for relationship table we must provide FK to make them work
 const server = new ApolloServer({
+    // TypeDefs is where we defined types
     typeDefs,
+
+    // resolvers are the logic (contains) to run codes
     resolvers: {
       Query,
       Product,
       Category
+    },
+
+    // context is used as giving props to the resolver's objects
+    context: {
+      categories,
+      products,
+      reviews
     }
 })
 
