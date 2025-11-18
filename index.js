@@ -1,21 +1,18 @@
-import { ApolloServer, gql } from "apollo-server"
+import { ApolloServer } from "apollo-server"
+import { typeDefs } from "./schema.js";
+import { Query } from "./resolvers/Query.js"
+import { Product } from "./resolvers/Product.js"
+import { Category } from "./resolvers/Category.js"
 
-const typeDefs = gql`
-    type Query {
-        hello: String
-    }
-`
-const resolvers = {
-    Query: {
-        hello: () => {
-            return "Lamdouy"
-        }
-    }
-}
-
+// Third methord is the way to get product by Id
+// Remember for relationship table we must provide FK to make them work
 const server = new ApolloServer({
     typeDefs,
-    resolvers
+    resolvers: {
+      Query,
+      Product,
+      Category
+    }
 })
 
 const PORT = process.env.PORT || 3000
