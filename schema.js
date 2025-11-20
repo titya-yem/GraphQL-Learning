@@ -45,8 +45,9 @@ export const typeDefs = gql`
     }
 
     # input is getting input from frontend (Apollo) 
-    # because we used filter above
+    # because we used filter above not scalar types
     input ProductsFilterInput {
         onSale: Boolean
+        avgRaing: Int
     }
 `
